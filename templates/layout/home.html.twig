@@ -1,0 +1,15 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block header %}
+    <ul>
+        {% if not app.user %}
+            <li><a href="{{ path('app_login') }}">Login</a></li>
+            <li><a href="{{ path('app_register') }}">Register</a></li>
+        {% else %}
+            <li><a href="{{ path('app_logout') }}">Logout</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('app_admin_dashboard') }}">Dashboard</a></li>
+            {% endif %}
+        {% endif %}
+    </ul>
+{% endblock %}
